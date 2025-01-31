@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ustoz Qo'shish</title>
+</head>
+<body>
+    <h2>Ustoz Qo'shish</h2>
+    <form method="POST">
+        {% csrf_token %}
+        <label>Ism:</label>
+        <input type="text" name="nom" required>
+
+        <label>Jins:</label>
+        <select name="jins" required>
+            <option value="Erkak">Erkak</option>
+            <option value="Ayol">Ayol</option>
+        </select>
+
+        <label>Yosh:</label>
+        <input type="number" name="yosh" required>
+
+        <label>Daraja:</label>
+        <select name="daraja" required>
+            <option value="Bakalavr">Bakalavr</option>
+            <option value="Magistr">Magistr</option>
+            <option value="Dotsent">Dotsent</option>
+            <option value="Professor">Professor</option>
+        </select>
+
+        <label>Fan:</label>
+        <select name="fan" required>
+            <option value="None">-----</option>
+            {% for fan in fanlar %}
+                <option value="{{ fan.id }}">{{ fan.nom }}</option>
+            {% endfor %}
+        </select>
+
+        <br><br>
+        <button type="submit">Qo‘shish</button>
+    </form>
+</body>
+</html>

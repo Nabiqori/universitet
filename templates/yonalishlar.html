@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Universitet | Yonalishlar</title>
+</head>
+<body>
+    <h1>yonalishlar ro'yxati</h1>
+    <a href="/yonalish_qoshish"><button>yonalish qoshish</button></a>
+    <br><br>
+    <a href="/">Bosh sahifa</a>
+    <hr>
+
+    {% for yonalish in yonalishlar %}
+        <p>{{ forloop.counter }}.
+            {{ yonalish.nom }}
+        </p>
+    {% endfor %}
+</body>
+</html>

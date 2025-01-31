@@ -21,3 +21,4 @@ class Ustoz(models.Model):
     fan = models.ForeignKey(Fan,on_delete=SET_NULL,null=True, blank=True)
     def __str__(self):
         return self.nom
+

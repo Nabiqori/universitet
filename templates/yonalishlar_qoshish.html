@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Universitet | yonalsih qoshish</title>
+</head>
+<body>
+<form method="POST">
+        {% csrf_token %}
+
+        <label >Nom:</label>
+        <input type="text" name="nom" required>
+        <label >Aktiv:</label>
+        <input type="checkbox" name="aktiv" required>
+
+        <br><br>
+        <button type="submit">Qo‘shish</button>
+    </form>
+</body>
+</html>
