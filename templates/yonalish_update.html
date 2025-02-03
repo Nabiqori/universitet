@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Universitet | yonalish</title>
+</head>
+<body>
+
+<a href="/">Bosh sahifa</a>
+    <hr>
+<h1>{{ yonalish.nom }} ma'lumotini tahrirlash</h1>
+    <hr>
+    <form method="post">
+    {% csrf_token %}
+    <label>Nom:</label>
+        <input type="text" name="nom" value="{{ yonalish.nom }}" required>
+
+    <label>Aktiv:</label>
+        <input type="checkbox" name="aktiv">
+    <button>Saqlash</button>
+</body>
+</html>

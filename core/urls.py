@@ -27,5 +27,8 @@ urlpatterns = [
     path('ustozlar/', ustozlar_view),
     path('yonalish_qoshish/', yonalishlar_qoshish_view),
     path('fan_qoshish/', fanlar_qoshish_view),
-    path('ustoz_qoshish/', ustoz_qoshish_view, name='ustoz_qoshish')
+    path('ustoz_qoshish/', ustoz_qoshish_view, name='ustoz_qoshish'),
+    path('fanlar/<int:pk>/tahrirlash/',fan_update_view),
+    path('yonalishlar/<int:pk>/tahrirlash/',yonalish_update_view),
+    path('ustozlar/<int:pk>/tahrirlash/',ustoz_update_view),
 ]

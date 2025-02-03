@@ -14,6 +14,9 @@
     {% for fan in fanlar %}
         <p>{{ forloop.counter }}.
             {{ fan.nom }}
+            <a href="/fanlar/{{ fan.id }}/tahrirlash/">
+                <button>Tahrirlash</button>
+            </a>
         </p>
     {% endfor %}
 </body>

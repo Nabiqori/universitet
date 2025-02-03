@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Universitet Ustoz tahrirlash</title>
+</head>
+<body>
+<a href="/">Bosh sahifa</a>
+    <hr>
+<h1>{{ ustoz.nom }} ma'lumotini tahrirlash</h1>
+    <hr>
+    <form method="post">
+    {% csrf_token %}
+    <label>nom:</label>
+        <input type="text" name="nom" value="{{ ustoz.nom }}" required>
+    <label>yosh:</label>
+        <input type="number" name="yosh" value="{{ ustoz.yosh }}" >
+    <label>Daraja:</label>
+        <select name="daraja">
+            <option>Bakalavr</option>
+            <option>Magistr</option>
+            <option>Dotsent</option>
+          <option>Professor</option>
+        </select>
+    <label>Fan:</label>
+        <select name="fan_id" required>
+            <option value="fan.id">{{ustoz.fan.nom}}</option>
+            {% for fan in fanlar %}
+                <option value="{{ fan.id }}">{{ fan.nom }}</option>
+            {% endfor %}
+        </select>
+    <label>Jins:</label>
+        <select name="jins" required>
+          <option >Erkak</option>
+          <option >Ayol</option>
+        </select>
+    <button>Saqlash</button>
+</body>
+</html>

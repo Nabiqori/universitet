@@ -14,6 +14,9 @@
     {% for yonalish in yonalishlar %}
         <p>{{ forloop.counter }}.
             {{ yonalish.nom }}
+            <a href="/yonalishlar/{{ yonalish.id }}/tahrirlash/">
+                <button>Tahrirlash</button>
+            </a>
         </p>
     {% endfor %}
 </body>
