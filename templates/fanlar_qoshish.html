@@ -7,21 +7,7 @@
 <body>
 <form method="POST">
   {% csrf_token %}
-
-  <label>Nom:</label>
-  <input type="text" name="nom" required>
-
-  <label>Asosiy:</label>
-  <input type="checkbox" name="asosiy" required>
-
-  <label>Yonalish:</label>
-  <select name="yonalish" >
-    <option value=None>-----</option>
-    {% for yonalish in yonalishlar %}
-        <option value="{{ yonalish.id }}">{{ yonalish.nom }}</option>
-    {% endfor %}
-  </select>
-
+  {{ form }}
   <br><br>
   <button type="submit">Qo‘shish</button>
 </form>

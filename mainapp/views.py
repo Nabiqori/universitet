@@ -1,4 +1,6 @@
 from django.shortcuts import *
+
+from .form import FanForm, YonalishForm, UstozForm
 from .models import *
 
 def home_view(request):
@@ -25,63 +27,35 @@ def ustozlar_view(request):
     return render(request, 'ustozlar.html', context)
 
 def yonalishlar_qoshish_view(request):
+    form = YonalishForm
     if request.method == "POST":
-        Yonalish.objects.create(
-            nom=request.POST.get('nom'),
-            aktiv=request.POST.get('aktiv') == 'on',
-        )
+        yonalish_form= YonalishForm(request.POST)
+        yonalish_form.save()
         return redirect("/yonalishlar/")
-    return render(request,"yonalishlar_qoshish.html")
+    return render(request,"yonalishlar_qoshish.html",{"form":form})
 
 def fanlar_qoshish_view(request):
+    form = FanForm
     if request.method == "POST":
-        yonalish_id = request.POST.get('yonalish')
-
-
-        if yonalish_id != 'None':  # Agar 'None' bo'lmasa, 'Yonalish' instansiyasini olish
-            yonalish = Yonalish.objects.get(id=yonalish_id)
-        else:
-            yonalish=None
-        Fan.objects.create(
-            nom=request.POST.get('nom'),
-            asosiy=request.POST.get('asosiy') == 'on',
-            yonalish=yonalish,
-
-        )
+        fan_form = FanForm(request.POST)
+        fan_form.save()
         return redirect("/fanlar/")
-    yonalishlar = Yonalish.objects.all()
     context={
-        "yonalishlar":yonalishlar,
+        "form":form,
     }
     return render(request,"fanlar_qoshish.html", context)
 
 def ustoz_qoshish_view(request):
+    form = UstozForm
     if request.method == "POST":
-        nom = request.POST.get('nom')
-        jins = request.POST.get('jins')
-        yosh = request.POST.get('yosh')
-        daraja = request.POST.get('daraja')
-        fan_id = request.POST.get('fan')
-
-
-        fan = None
-        if fan_id != 'None':
-            fan = Fan.objects.get(id=fan_id)
-
-
-        Ustoz.objects.create(
-            nom=nom,
-            jins=jins,
-            yosh=yosh,
-            daraja=daraja,
-            fan=fan
-        )
+        ustoz_form = UstozForm(request.POST)
+        ustoz_form.save()
 
         return redirect("/ustozlar/")
 
     fanlar = Fan.objects.all()
     context = {
-        "fanlar": fanlar,
+        "form": form,
     }
 
     return render(request, "ustozlar_qoshish.html", context)
@@ -127,20 +101,15 @@ def ustoz_update_view(request, pk):
     ustoz = get_object_or_404(Ustoz, pk=pk)
 
     if request.method == "POST":
-        nom = request.POST.get("nom")
-        yosh = request.POST.get("yosh")
-        daraja = request.POST.get("daraja")
-        jins = request.POST.get("jins")
         fan_id = request.POST.get("fan_id")
 
 
-        fan = Fan.objects.get(id=fan_id) if fan_id != 'None' else None
-
-        ustoz.nom = nom
-        ustoz.yosh = yosh
-        ustoz.daraja = daraja
-        ustoz.jins = jins
-        ustoz.fan = fan
+        fan = Fan.objects.get(id=fan_id)
+        ustoz.nom = request.POST.get("nom")
+        ustoz.yosh = request.POST.get("yosh")
+        ustoz.daraja = request.POST.get("daraja")
+        ustoz.jins = request.POST.get("jins")
+        ustoz.fan = request.POST.get("fan_id")
         ustoz.save()
 
         return redirect("/ustozlar/")

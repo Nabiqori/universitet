@@ -8,11 +8,7 @@
 <form method="POST">
         {% csrf_token %}
 
-        <label >Nom:</label>
-        <input type="text" name="nom" required>
-        <label >Aktiv:</label>
-        <input type="checkbox" name="aktiv" required>
-
+    {{ form }}
         <br><br>
         <button type="submit">Qo‘shish</button>
     </form>
